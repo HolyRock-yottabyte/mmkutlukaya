@@ -16,7 +16,24 @@
             --accent: #ffffff;
             --font-sans: 'Inter', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
-            --glass-bg: rgba(0, 0, 0, 0.7);
+            --glass-bg: var(--shadow);
+            --card-bg: var(--card-bg);
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --shadow: var(--shadow);
+            --term-bg: var(--term-bg);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #fcfcfc;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --border-color: #eaeaec;
+            --accent: #000000;
+            --glass-bg: rgba(252, 252, 252, 0.85);
+            --card-bg: #ffffff;
+            --card-hover: #f5f5f5;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --term-bg: rgba(255, 255, 255, 0.95);
         }
 
         * {
@@ -77,6 +94,23 @@
 
         .nav-links a:hover {
             color: var(--text-main);
+        }
+
+                .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover {
+            background: var(--card-bg);
         }
 
         .lang-toggle {
@@ -150,7 +184,7 @@
             height: 80vw;
             max-width: 800px;
             max-height: 800px;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, var(--card-bg) 0%, rgba(0,0,0,0) 70%);
             z-index: -1;
             pointer-events: none;
         }
@@ -166,7 +200,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px var(--shadow);
             transform: rotateY(-10deg) rotateX(5deg);
             transition: transform 0.5s ease;
         }
@@ -263,7 +297,7 @@
             border: 1px solid var(--border-color);
             padding: 1.5rem;
             border-radius: 8px;
-            background: rgba(255,255,255,0.02);
+            background: var(--card-bg);
             transition: border-color 0.2s;
         }
         
@@ -358,7 +392,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.5rem;
-            background: rgba(255,255,255,0.02);
+            background: var(--card-bg);
             transition: border-color 0.2s;
         }
 
@@ -426,7 +460,7 @@
             padding: 1rem;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            background: rgba(255,255,255,0.02);
+            background: var(--card-bg);
         }
         
         .heatmap-container img {
@@ -476,7 +510,7 @@
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 12px var(--shadow);
             z-index: 1000;
             transition: transform 0.2s;
             display: flex;
@@ -494,7 +528,7 @@
             right: 2rem;
             width: 350px;
             height: 400px;
-            background: rgba(10, 10, 10, 0.95);
+            background: var(--term-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             display: flex;
@@ -504,7 +538,7 @@
             opacity: 0;
             pointer-events: none;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 30px var(--shadow);
             backdrop-filter: blur(10px);
         }
 
@@ -521,7 +555,7 @@
             border-bottom: 1px solid var(--border-color);
             font-size: 0.8rem;
             color: var(--text-muted);
-            background: rgba(255,255,255,0.03);
+            background: var(--card-bg);
             border-radius: 8px 8px 0 0;
             font-family: var(--font-sans);
         }
@@ -641,7 +675,7 @@
         }
         .award-icon {
             font-size: 2rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -673,13 +707,13 @@
             padding: 0.6rem 0.8rem;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
         .cert-item:hover {
             border-color: var(--text-muted);
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--card-bg);
         }
         .cert-icon {
             color: var(--text-muted);
@@ -706,7 +740,7 @@
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 3rem 3rem 0 3rem;
@@ -724,7 +758,7 @@
         }
         .featured-badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card-hover);
             color: var(--text-main);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
@@ -760,10 +794,10 @@
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.4;
-            background: rgba(255,255,255,0.03);
+            background: var(--card-bg);
             padding: 1rem;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--card-bg);
         }
         .project-tags {
             justify-content: center;
@@ -829,6 +863,10 @@
                     <a href="#projects" data-i18n="nav_projects">Projeler</a>
                     <a href="#contact" data-i18n="nav_contact">İletişim</a>
                 </div>
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">TR / EN</button>
             </div>
         </div>
@@ -1039,7 +1077,7 @@
                 </div>
                 <div class="featured-visual">
                     <div class="mockup-window" style="border: none; background: transparent; padding: 0; display: flex; align-items: center; justify-content: center; height: 100%;">
-                        <img src="assets/aeroforge-mockup.png" alt="AeroForge DI Interface" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid var(--border-color); object-fit: cover; max-height: 600px; display: block; margin: 0 auto;">
+                        <img src="assets/aeroforge-mockup.png" alt="AeroForge DI Interface" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 40px var(--shadow); border: 1px solid var(--border-color); object-fit: cover; max-height: 600px; display: block; margin: 0 auto;">
                     </div>
                 </div>
             </div>
