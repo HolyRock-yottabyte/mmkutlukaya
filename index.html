@@ -1102,12 +1102,50 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
+
+        /* Minimal Premium Preloader CSS */
+        #boot-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.87, 0, 0.13, 1), transform 0.6s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+        .loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        #loader-text {
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        .loader-bar-bg {
+            width: 150px; height: 1px;
+            background: rgba(150, 150, 150, 0.2);
+            position: relative; overflow: hidden;
+        }
+        .loader-bar {
+            position: absolute; top: 0; left: 0; height: 100%; width: 0%;
+            background: var(--text-main);
+            transition: width 0.05s linear;
+        }
+
 </style>
 
 </head>
 <body>
     <div class="ambient-glow-right"></div>
 
+    
+    <!-- MINIMAL PREMIUM PRELOADER -->
+    <div id="boot-screen">
+        <div class="loader-content">
+            <div id="loader-text">0%</div>
+            <div class="loader-bar-bg"><div class="loader-bar" id="loader-bar"></div></div>
+        </div>
+    </div>
     <nav>
         <div class="nav-content">
             <div class="logo">MK.</div>
@@ -1732,6 +1770,145 @@
             initParticles(); animateParticles();
         }
 
+        
+        
+        
+        // --- 6. PREMIUM PRELOADER ---
+        window.addEventListener('load', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            const loaderText = document.getElementById('loader-text');
+            const loaderBar = document.getElementById('loader-bar');
+            if(!bootScreen || !loaderText || !loaderBar) return;
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 20) + 10;
+                if(progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        bootScreen.style.opacity = '0';
+                        bootScreen.style.transform = 'translateY(-30px)';
+                        setTimeout(() => bootScreen.style.display = 'none', 600);
+                    }, 250);
+                }
+                loaderText.innerText = progress + '%';
+                loaderBar.style.width = progress + '%';
+            }, 50);
+        });
+
+        // --- 5. 3D TILT EFFECT (APPLE TV STYLE) ---
+        const tiltElements = document.querySelectorAll('.project-card, .stat-item, .award-card, .cert-item');
+        
+        tiltElements.forEach(el => {
+            // CSS'te geçişleri yumuşatmak için transition ekliyoruz
+            el.style.transition = 'transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease';
+            
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left; 
+                const y = e.clientY - rect.top;  
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Max dönüş açısı (örn: 8 derece)
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                // Fare ayrıldığında eski konumuna yaylanarak döner
+                el.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease';
+                el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)`;
+                
+                // Kısa bir süre sonra mousemove için hızlı transition'a geri dön
+                setTimeout(() => {
+                    el.style.transition = 'transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease';
+                }, 400);
+            });
+        });
+
+        // --- 4. TEXT SCRAMBLE EFFECT ---
+        class TextScramble {
+          constructor(el) {
+            this.el = el;
+            this.chars = '!<>-_\\/[]{}—=+*^?#_X';
+            this.update = this.update.bind(this);
+          }
+          setText(newText) {
+            const oldText = this.el.innerText || '';
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => this.resolve = resolve);
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+              const from = oldText[i] || '';
+              const to = newText[i] || '';
+              const start = Math.floor(Math.random() * 40);
+              const end = start + Math.floor(Math.random() * 40);
+              this.queue.push({ from, to, start, end });
+            }
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
+          }
+          update() {
+            let output = '';
+            let complete = 0;
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+              let { from, to, start, end, char } = this.queue[i];
+              if (this.frame >= end) {
+                complete++;
+                output += to;
+              } else if (this.frame >= start) {
+                if (!char || Math.random() < 0.28) {
+                  char = this.randomChar();
+                  this.queue[i].char = char;
+                }
+                output += `<span style="color: var(--text-muted); font-family: var(--font-mono);">${char}</span>`;
+              } else {
+                output += from;
+              }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+              this.resolve();
+            } else {
+              this.frameRequest = requestAnimationFrame(this.update);
+              this.frame++;
+            }
+          }
+          randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+          }
+        }
+
+        const scrambleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.dataset.scrambled === "false") {
+                    const fx = new TextScramble(entry.target);
+                    // Temporarily blank it out so it animates from empty or gibberish
+                    entry.target.innerText = Array.from({length: entry.target.dataset.original.length}, () => '!').join('');
+                    fx.setText(entry.target.dataset.original);
+                    entry.target.dataset.scrambled = "true";
+                }
+            });
+        }, { threshold: 1.0 });
+
+        // Initialize scramblers for section headers (H2)
+        setTimeout(() => {
+            document.querySelectorAll('section > h2[data-i18n], .hero h1').forEach(el => {
+                if(!el.closest('.hero') || el.tagName === 'H1') {
+                    el.dataset.original = el.innerText;
+                    el.dataset.scrambled = "false";
+                    scrambleObserver.observe(el);
+                }
+            });
+        }, 200); // Give time for i18n to set initial text
+
         // --- 3. TERMINAL EASTER EGGS ---
 
         // Theme Toggle Logic
@@ -1940,7 +2117,13 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (i18n[currentLang][key]) {
-                    el.innerHTML = i18n[currentLang][key];
+                    if (el.dataset.scrambled) {
+                        el.dataset.original = i18n[currentLang][key];
+                        const fx = new TextScramble(el);
+                        fx.setText(el.dataset.original);
+                    } else {
+                        el.innerHTML = i18n[currentLang][key];
+                    }
                 }
             });
             
