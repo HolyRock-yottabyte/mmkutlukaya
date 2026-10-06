@@ -700,7 +700,108 @@
             font-family: var(--font-mono);
             margin-top: 0.25rem;
         }
+
+        /* Featured Project */
+        .featured-project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--text-main), transparent);
+        }
+        .featured-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .featured-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .featured-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .featured-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+        .featured-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .featured-features svg {
+            color: var(--text-main);
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .mockup-window {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .mockup-header {
+            background: #161b22;
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid #30363d;
+        }
+        .mockup-header i {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+        .mockup-header i:nth-child(2) { background: #ffbd2e; }
+        .mockup-header i:nth-child(3) { background: #27c93f; }
+        .mockup-body {
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #c9d1d9;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 900px) {
+            .featured-project {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 2rem;
+            }
+            .featured-title { font-size: 1.5rem; }
+        }
 </style>
+
 </head>
 <body>
 
@@ -1218,6 +1319,12 @@
                 exp3_date: "Şub 2022 - Haz 2022",
                 exp3_title: "QA / Oyun Test Uzmanı",
                 exp3_desc: "Yayın öncesi (pre-release) oyun sürümleri üzerinde kapsamlı Kalite Güvence (QA) testleri yürüttüm.<br><br><ul style='margin-left: 1rem; margin-top: 0.5rem;'><li>Fonksiyonel ve performans testlerinin senaryolara uygun olarak gerçekleştirilmesi.</li><li>Oyun motorundaki hataların detaylı şekilde dökümante edilerek raporlanması.</li><li>Geliştirici ekiple koordineli çalışarak hata çözümlerinin doğrulanması.</li></ul>",
+                feat_badge: "Öne Çıkan Ürün",
+                feat_desc: "Yapay zeka destekli, tam teşekküllü fizik tabanlı İHA / Drone optimizasyon ve mühendislik platformu (SaaS).",
+                feat_f1: "12 Mühendislik Modeli (Momentum Teorisi, Peukert Batarya Modeli vb.)",
+                feat_f2: "236+ gerçek üretici donanım kütüphanesi (Motor, ESC, Pervane)",
+                feat_f3: "Yapay zeka (AI) destekli maksimum uçuş süresi optimizasyonu",
+                feat_f4: "Kapsamlı analiz raporları ve doğrudan ArduPilot .param dışa aktarma",
                 filter_all: "Tümü",
                 filter_embedded: "Gömülü",
                 filter_web: "Web",
@@ -1286,6 +1393,12 @@
                 exp3_date: "Feb 2022 - Jun 2022",
                 exp3_title: "QA / Game Tester",
                 exp3_desc: "Conducted comprehensive Quality Assurance (QA) testing on pre-release game builds.<br><br><ul style='margin-left: 1rem; margin-top: 0.5rem;'><li>Executed functional and performance tests according to testing scenarios.</li><li>Documented and reported engine bugs and gameplay glitches in detail.</li><li>Collaborated with the developer team to verify bug fixes.</li></ul>",
+                feat_badge: "Featured Product",
+                feat_desc: "AI-powered, full-fledged physics-based UAV / Drone optimization and engineering platform (SaaS).",
+                feat_f1: "12 Engineering Models (Momentum Theory, Peukert Battery Model, etc.)",
+                feat_f2: "236+ real manufacturer hardware library (Motors, ESCs, Propellers)",
+                feat_f3: "AI-powered maximum flight time optimization algorithm",
+                feat_f4: "Comprehensive analysis reports and direct ArduPilot .param export",
                 filter_all: "All",
                 filter_embedded: "Embedded",
                 filter_web: "Web",
