@@ -1132,10 +1132,76 @@
             transition: width 0.05s linear;
         }
 
+
+        /* Custom Cursor CSS */
+        body, a, button, input, textarea, .btn, .project-card, .tech-category {
+            cursor: none !important;
+        }
+        .custom-cursor-dot {
+            width: 8px; height: 8px;
+            background-color: var(--text-main);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%;
+            z-index: 9999999;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+        .custom-cursor-outline {
+            width: 32px; height: 32px;
+            border: 1px solid var(--text-main);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%;
+            z-index: 9999998;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+        }
+        .custom-cursor-hover {
+            width: 60px; height: 60px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.5);
+        }
+        [data-theme="light"] .custom-cursor-hover {
+            background-color: rgba(37, 99, 235, 0.2);
+        }
+        @media (max-width: 768px) {
+            body, a, button, input, textarea, .btn, .project-card, .tech-category { cursor: auto !important; }
+            .custom-cursor-dot, .custom-cursor-outline { display: none !important; }
+        }
+
+        /* Marquee CSS */
+        .marquee-wrapper {
+            width: 100vw; overflow: hidden;
+            padding: 1.5rem 0;
+            background: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: relative; z-index: 10;
+            transform: rotate(-2deg) scale(1.05);
+            margin: 2rem 0 6rem 0;
+            left: calc(-50vw + 50%);
+        }
+        .marquee {
+            display: flex; white-space: nowrap;
+            animation: marquee 25s linear infinite;
+            font-family: var(--font-mono);
+            font-weight: 700; font-size: 2.5rem;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-muted);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
 </style>
 
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor-outline" id="cursor-outline"></div>
+
     <div class="ambient-glow-right"></div>
 
     
@@ -1212,6 +1278,15 @@
                 </div>
             </div>
         </section>
+
+    <!-- Marquee Banner -->
+    <div class="marquee-wrapper">
+        <div class="marquee">
+            <span>/// EMBEDDED SYSTEMS /// UAV & DRONE TECH /// AUTONOMOUS SYSTEMS /// AI & MACHINE LEARNING /// FULL-STACK DEVELOPMENT /// ROBOTICS /// CYBERSECURITY &nbsp; </span>
+            <span>/// EMBEDDED SYSTEMS /// UAV & DRONE TECH /// AUTONOMOUS SYSTEMS /// AI & MACHINE LEARNING /// FULL-STACK DEVELOPMENT /// ROBOTICS /// CYBERSECURITY &nbsp; </span>
+        </div>
+    </div>
+
 
         <section id="stats" class="reveal">
             <div class="stats-grid">
@@ -1773,6 +1848,79 @@
         
         
         
+        
+        // --- 7. CUSTOM CURSOR & UI SOUNDS ---
+        const cursorDot = document.getElementById("cursor-dot");
+        const cursorOutline = document.getElementById("cursor-outline");
+
+        if(window.innerWidth > 768 && cursorDot && cursorOutline) {
+            window.addEventListener("mousemove", function (e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 300, fill: "forwards" });
+            });
+
+            const interactables = document.querySelectorAll('a, button, .btn, .project-card, .tech-category, input, textarea');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('custom-cursor-hover'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('custom-cursor-hover'));
+            });
+        }
+
+        // Web Audio API Synth for Premium UI Sounds
+        let audioCtx;
+        function initAudio() {
+            if(!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        function playBeep(freq = 400, type = 'sine', duration = 0.05, vol = 0.02) {
+            if(!audioCtx) return;
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // Initialize audio on first click anywhere (browser policy)
+        document.body.addEventListener('click', initAudio, {once: true});
+
+        // Theme switch sound
+        const audioThemeBtn = document.querySelector('.theme-toggle');
+        if(audioThemeBtn) {
+            audioThemeBtn.addEventListener('click', () => {
+                initAudio();
+                playBeep(250, 'sine', 0.15, 0.05); // deep swoosh
+            });
+        }
+
+        // Terminal typing sound
+        const audioTermInput = document.getElementById('terminal-input');
+        if(audioTermInput) {
+            audioTermInput.addEventListener('keydown', (e) => {
+                initAudio();
+                if(e.key !== 'Enter') playBeep(800, 'square', 0.02, 0.005); // soft click
+                else playBeep(300, 'square', 0.1, 0.02); // enter boop
+            });
+        }
+        
+        // Hover tick on nav and buttons
+        document.querySelectorAll('.nav-links a, .btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if(audioCtx) playBeep(1200, 'sine', 0.02, 0.01);
+            });
+        });
+
         // --- 6. PREMIUM PRELOADER ---
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
