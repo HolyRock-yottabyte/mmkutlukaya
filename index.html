@@ -82,6 +82,17 @@
             padding: 0;
         }
 
+        /* Özel Metin Seçim Rengi */
+        ::selection {
+            background: rgba(124, 58, 237, 0.4); /* Morumsu şeffaf vurgu */
+            color: #ffffff;
+        }
+        
+        [data-theme="light"] ::selection {
+            background: rgba(37, 99, 235, 0.2); /* Açık temada hafif mavi */
+            color: #000000;
+        }
+        
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -89,6 +100,43 @@
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Profesyonel derinlik katan ince nokta (dot) deseni */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            /* In dark mode we want dots to be visible. Let's use a subtle white */
+            background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        [data-theme="light"] body::before {
+            background-image: radial-gradient(rgba(0,0,0,0.1) 1px, transparent 1px);
+        }
+
+        /* Modern hafif arka plan ışıklandırması (Glow) */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -20%; left: -10%; width: 50vw; height: 50vh;
+            background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.4), transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        .ambient-glow-right {
+            position: fixed;
+            bottom: -20%; right: -10%; width: 60vw; height: 60vh;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.3), transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(60px);
         }
 
         .container {
@@ -430,14 +478,42 @@
 
         .project-card {
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            transition: border-color 0.2s;
+            border-radius: 12px;
+            padding: 2rem;
+            /* Yari seffaf arka plan kartlari öne çikarir */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.3s, box-shadow 0.3s, border 0.3s, color 0.3s, transform 0.1s ease-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        [data-theme="light"] .project-card {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Karta profesyonel bir üst çizgi detayı */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .project-card:hover {
             border-color: var(--text-muted);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+            background: linear-gradient(90deg, transparent, #2563eb, transparent);
         }
 
         .project-title {
@@ -516,12 +592,8 @@
             }
         }
         
-        .tech-stack-container {
-            margin-bottom: 4rem;
-        }
-        .tech-category {
-            margin-bottom: 1.5rem;
-        }
+        
+        
         .tech-category h4 {
             font-size: 0.95rem;
             color: var(--text-main);
@@ -947,10 +1019,94 @@
             }
             .featured-title { font-size: 1.5rem; }
         }
+
+        /* Özelleştirilmiş Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        [data-theme="light"] ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Typewriter Cursor */
+        .type-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--text-main);
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        /* Neon Button Hover */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 rgba(255,255,255,0);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Bento Box Tech Stack */
+        .tech-stack-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        @media (max-width: 600px) {
+            .tech-stack-container { grid-template-columns: 1fr; }
+        }
+        .tech-stack-container > h3 {
+            grid-column: 1 / -1;
+            margin-bottom: 0.5rem !important;
+        }
+        .tech-category {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 0 !important;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        [data-theme="light"] .tech-category {
+            background: rgba(255,255,255,0.6);
+        }
+        .tech-category:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
 </style>
 
 </head>
 <body>
+    <div class="ambient-glow-right"></div>
 
     <nav>
         <div class="nav-content">
@@ -975,9 +1131,10 @@
     <div class="container">
         
         <section class="hero" id="home">
+            <canvas id="particles-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: auto;"></canvas>
             <div class="reveal">
                 <h1 data-i18n="hero_title">Mert Kutlukaya</h1>
-                <h2 data-i18n="hero_subtitle" style="line-height: 1.4; margin-bottom: 1.5rem;">Yazılım Geliştirici | Otonom Sistemler & Yapay Zeka</h2>
+                <h2 style="line-height: 1.4; margin-bottom: 1.5rem; font-family: var(--font-mono); color: var(--text-muted);"><span id="typewriter"></span><span class="type-cursor"></span></h2>
                 <p data-i18n="hero_desc" style="margin-bottom: 2.5rem;">
                     Mersin Üniversitesi CTIS son sınıf öğrencisi. Gömülü sistemler, otonom araçlar, siber güvenlik ve yazılım geliştirme alanlarında uzmanlaşıyorum.
                 </p>
@@ -1460,6 +1617,123 @@
     </div>
 
     <script>
+        
+        // --- 1. MAGNETIC BUTTONS ---
+        const magnets = document.querySelectorAll('.btn');
+        magnets.forEach(magnet => {
+            magnet.addEventListener('mousemove', function(e) {
+                const position = magnet.getBoundingClientRect();
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
+                magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.4}px)`;
+            });
+            magnet.addEventListener('mouseleave', function(e) {
+                magnet.style.transform = 'translate(0px, 0px)';
+            });
+        });
+
+        // --- 2. CANVAS PARTICLES (NEURAL NET) ---
+        const canvas = document.getElementById('particles-bg');
+        if(canvas) {
+            const ctx = canvas.getContext('2d');
+            let particlesArray = [];
+            const mouse = { x: null, y: null, radius: 120 };
+
+            function resizeCanvas() {
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+            }
+            window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+            
+            canvas.addEventListener('mousemove', function(event) {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = event.clientX - rect.left;
+                mouse.y = event.clientY - rect.top;
+            });
+            canvas.addEventListener('mouseleave', function() {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor(x, y, dx, dy, size) {
+                    this.x = x; this.y = y;
+                    this.dx = dx; this.dy = dy;
+                    this.size = size;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)';
+                    ctx.fill();
+                }
+                update() {
+                    if (this.x > canvas.width || this.x < 0) this.dx = -this.dx;
+                    if (this.y > canvas.height || this.y < 0) this.dy = -this.dy;
+                    
+                    if(mouse.x != null) {
+                        let mx = mouse.x - this.x; let my = mouse.y - this.y;
+                        let distance = Math.sqrt(mx*mx + my*my);
+                        if (distance < mouse.radius) {
+                            // Dodge mouse
+                            const force = (mouse.radius - distance) / mouse.radius;
+                            this.x -= (mx/distance) * force * 3;
+                            this.y -= (my/distance) * force * 3;
+                        }
+                    }
+                    this.x += this.dx; this.y += this.dy;
+                    this.draw();
+                }
+            }
+
+            function initParticles() {
+                particlesArray = [];
+                resizeCanvas();
+                let num = (canvas.height * canvas.width) / 15000;
+                for (let i = 0; i < num; i++) {
+                    let size = Math.random() * 2 + 0.5;
+                    let x = Math.random() * canvas.width;
+                    let y = Math.random() * canvas.height;
+                    let dx = (Math.random() - 0.5) * 1.5;
+                    let dy = (Math.random() - 0.5) * 1.5;
+                    particlesArray.push(new Particle(x, y, dx, dy, size));
+                }
+            }
+            
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                }
+                connectParticles();
+            }
+
+            function connectParticles() {
+                for (let a = 0; a < particlesArray.length; a++) {
+                    for (let b = a; b < particlesArray.length; b++) {
+                        let dx = particlesArray[a].x - particlesArray[b].x;
+                        let dy = particlesArray[a].y - particlesArray[b].y;
+                        let dist = dx*dx + dy*dy;
+                        if (dist < 12000) {
+                            let opacity = 1 - (dist/12000);
+                            ctx.strokeStyle = document.documentElement.getAttribute('data-theme') === 'light' 
+                                ? `rgba(0,0,0,${opacity * 0.15})` 
+                                : `rgba(255,255,255,${opacity * 0.15})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            initParticles(); animateParticles();
+        }
+
+        // --- 3. TERMINAL EASTER EGGS ---
+
         // Theme Toggle Logic
         const themeBtn = document.getElementById('themeBtn');
         const sunIcon = document.getElementById('sun-icon');
@@ -1499,7 +1773,9 @@
                 nav_contact: "İletişim",
                 nav_education: "Eğitim",
                 hero_title: "Mert Kutlukaya",
-                hero_subtitle: "Yazılım Geliştirici | Otonom Sistemler & Yapay Zeka",
+                hero_type_1: "> Full-Stack Developer",
+                hero_type_2: "> Gömülü Sistemler Geliştiricisi",
+                hero_type_3: "> Yazılım Geliştirici | Yapay Zeka & Otonom Sistemler",
                 hero_desc: "Mersin Üniversitesi CTIS son sınıf öğrencisi. Gömülü sistemler, otonom araçlar, siber güvenlik ve yazılım geliştirme alanlarında uzmanlaşıyorum.",
                 hero_btn_cv: "CV İndir",
                 hero_btn_work: "Çalışmalarım",
@@ -1579,7 +1855,9 @@
                 nav_contact: "Contact",
                 nav_education: "Education",
                 hero_title: "Mert Kutlukaya",
-                hero_subtitle: "Software Developer | Autonomous Systems & AI",
+                hero_type_1: "> Full-Stack Developer",
+                hero_type_2: "> Embedded Systems Developer",
+                hero_type_3: "> Software Developer | AI & Autonomous Systems",
                 hero_desc: "CTIS senior at Mersin University. Specializing in embedded systems, autonomous vehicles, cybersecurity, and software development.",
                 hero_btn_cv: "Download CV",
                 hero_btn_work: "My Work",
@@ -1669,6 +1947,45 @@
             document.getElementById('langBtn').innerText = currentLang === 'tr' ? 'TR / EN' : 'EN / TR';
         }
 
+        
+        // Typewriter Effect
+        let typeIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeEl = document.getElementById('typewriter');
+
+        function typeEffect() {
+            if (!typeEl) return;
+            const currentStrings = [
+                i18n[currentLang].hero_type_1,
+                i18n[currentLang].hero_type_2,
+                i18n[currentLang].hero_type_3
+            ];
+            const currentText = currentStrings[typeIndex];
+            
+            if (isDeleting) {
+                typeEl.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeEl.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 30 : 80;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2500; // Bekleme saniyesi
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeIndex = (typeIndex + 1) % currentStrings.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typeSpeed);
+        }
+        setTimeout(typeEffect, 1000);
+
         // Reveal Animation
         function reveal() {
             const reveals = document.querySelectorAll(".reveal");
@@ -1749,7 +2066,26 @@
             const isTR = currentLang === 'tr';
             
             switch(cmd) {
+                case 'sudo mert':
+                case 'matrix':
+                    const mx = setInterval(() => {
+                        printTerm('<span style="color:#0f0;font-family:monospace;word-break:break-all;">' + Array.from({length:40}, () => String.fromCharCode(33+Math.random()*93)).join('') + '</span>');
+                    }, 50);
+                    setTimeout(() => { clearInterval(mx); printTerm('<span style="color:#0f0;">Matrix escape successful.</span>'); }, 1500);
+                    return;
+                case 'profile':
+                    printTerm('<pre style="color:var(--text-main); font-size:10px; line-height:10px;">' +
+' __  __           _   \n' +
+'|  \\/  |         | |  \n' +
+'| \\  / | ___ _ __| |_ \n' +
+'| |\\/| |/ _ \\ "__| __|\n' +
+'| |  | |  __/ |  | |_ \n' +
+'|_|  |_|\\___|_|   \\__|\n' +
+'</pre>');
+                    return;
                 case 'help':
+                    res = isTR ? "Komutlar: help, whoami, skills, projects, clear, profile, matrix" : "Commands: help, whoami, skills, projects, clear, profile, matrix";
+                    break;
                     res = isTR ? 
                         "Komutlar: help, whoami, skills, projects, clear" : 
                         "Commands: help, whoami, skills, projects, clear";
