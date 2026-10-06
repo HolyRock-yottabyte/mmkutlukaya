@@ -1006,6 +1006,48 @@
         <section id="projects" class="reveal">
             <h2 data-i18n="nav_projects">Projeler</h2>
             
+            <div class="featured-project reveal">
+                <div class="featured-content">
+                    <div class="featured-badge" data-i18n="feat_badge">Öne Çıkan Ürün</div>
+                    <h3 class="featured-title">AeroForge DI</h3>
+                    <p class="featured-desc" data-i18n="feat_desc">Yapay zeka destekli, tam teşekküllü fizik tabanlı İHA / Drone optimizasyon ve mühendislik platformu (SaaS).</p>
+                    <ul class="featured-features">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="feat_f1">12 Mühendislik Modeli (Momentum Teorisi, Peukert Batarya Modeli vb.)</span></li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="feat_f2">236+ gerçek üretici donanım kütüphanesi (Motor, ESC, Pervane)</span></li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="feat_f3">Yapay zeka (AI) destekli maksimum uçuş süresi optimizasyonu</span></li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="feat_f4">Kapsamlı analiz raporları ve doğrudan ArduPilot .param dışa aktarma</span></li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Vanilla JS</span>
+                        <span class="tag">SaaS / AI</span>
+                    </div>
+                </div>
+                <div class="featured-visual">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <i></i><i></i><i></i>
+                        </div>
+                        <div class="mockup-body">
+<pre style="margin:0;"><code><span style="color: #ff7b72">import</span> aeroforge.physics <span style="color: #ff7b72">as</span> physics
+<span style="color: #ff7b72">from</span> engine <span style="color: #ff7b72">import</span> AI_Optimizer
+
+<span style="color: #8b949e"># Initialize UAV physics model</span>
+drone = physics.UAV(weight=<span style="color: #79c0ff">2.5</span>)
+drone.load(motors=<span style="color: #a5d6ff">"T-Motor P60"</span>, prop=<span style="color: #a5d6ff">"16x5.4"</span>)
+
+<span style="color: #8b949e"># Run AI optimization for max flight time</span>
+opt = AI_Optimizer(target=<span style="color: #a5d6ff">"flight_time"</span>)
+best_config = opt.run(drone, iters=<span style="color: #79c0ff">10000</span>)
+
+<span style="color: #d2a8ff">print</span>(<span style="color: #a5d6ff">f"Optimal Flight Time: {best_config.time} mins"</span>)
+<span style="color: #d2a8ff">print</span>(<span style="color: #a5d6ff">"Exporting ArduPilot .param file..."</span>)</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Tümü</button>
                 <button class="filter-btn" data-filter="embedded" data-i18n="filter_embedded">Gömülü</button>
