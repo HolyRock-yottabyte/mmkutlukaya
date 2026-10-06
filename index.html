@@ -1025,25 +1025,8 @@
                     </div>
                 </div>
                 <div class="featured-visual">
-                    <div class="mockup-window">
-                        <div class="mockup-header">
-                            <i></i><i></i><i></i>
-                        </div>
-                        <div class="mockup-body">
-<pre style="margin:0;"><code><span style="color: #ff7b72">import</span> aeroforge.physics <span style="color: #ff7b72">as</span> physics
-<span style="color: #ff7b72">from</span> engine <span style="color: #ff7b72">import</span> AI_Optimizer
-
-<span style="color: #8b949e"># Initialize UAV physics model</span>
-drone = physics.UAV(weight=<span style="color: #79c0ff">2.5</span>)
-drone.load(motors=<span style="color: #a5d6ff">"T-Motor P60"</span>, prop=<span style="color: #a5d6ff">"16x5.4"</span>)
-
-<span style="color: #8b949e"># Run AI optimization for max flight time</span>
-opt = AI_Optimizer(target=<span style="color: #a5d6ff">"flight_time"</span>)
-best_config = opt.run(drone, iters=<span style="color: #79c0ff">10000</span>)
-
-<span style="color: #d2a8ff">print</span>(<span style="color: #a5d6ff">f"Optimal Flight Time: {best_config.time} mins"</span>)
-<span style="color: #d2a8ff">print</span>(<span style="color: #a5d6ff">"Exporting ArduPilot .param file..."</span>)</code></pre>
-                        </div>
+                    <div class="mockup-window" style="border: none; background: transparent; padding: 0; display: flex; align-items: center; justify-content: center; height: 100%;">
+                        <img src="assets/aeroforge-mockup.png" alt="AeroForge DI Interface" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid var(--border-color); object-fit: contain; max-height: 350px;">
                     </div>
                 </div>
             </div>
