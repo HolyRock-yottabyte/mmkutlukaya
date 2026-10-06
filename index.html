@@ -703,17 +703,17 @@
 
         /* Featured Project */
         .featured-project {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 3rem;
+            padding: 3rem 3rem 0 3rem;
             margin-bottom: 4rem;
-            align-items: center;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
         .featured-project::before {
             content: '';
@@ -746,16 +746,27 @@
         .featured-features {
             list-style: none;
             padding: 0;
-            margin: 0 0 1.5rem 0;
+            margin: 0 auto 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            text-align: left;
+            max-width: 800px;
         }
         .featured-features li {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            margin-bottom: 0.75rem;
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.4;
+            background: rgba(255,255,255,0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .project-tags {
+            justify-content: center;
         }
         .featured-features svg {
             color: var(--text-main);
@@ -794,9 +805,11 @@
         
         @media (max-width: 900px) {
             .featured-project {
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
+                padding: 1.5rem 1.5rem 0 1.5rem;
                 gap: 2rem;
+            }
+            .featured-features {
+                grid-template-columns: 1fr;
             }
             .featured-title { font-size: 1.5rem; }
         }
