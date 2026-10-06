@@ -1389,33 +1389,45 @@
             </div>
         </section>
 
-        <section id="contact" class="reveal" style="padding-bottom: 4rem;">
+                <section id="contact" class="reveal" style="padding-bottom: 6rem;">
             <h2 data-i18n="contact_title">İletişim</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="contact_desc">Projeleriniz veya işbirliği için benimle iletişime geçebilirsiniz.</p>
+            <p style="color: var(--text-muted); margin-bottom: 3rem; max-width: 600px;" data-i18n="contact_desc">Projeleriniz veya işbirliği için benimle iletişime geçebilirsiniz.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
-                <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem;">
-                    <h4 style="margin-bottom: 0.75rem; font-weight: 500;" data-i18n="contact_location_title">Konum</h4>
-                    <p style="color: var(--text-muted); margin: 0;">📍 Mersin, Türkiye</p>
-                    <p style="color: var(--text-muted); margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-i18n="contact_work_pref">Uzaktan (Remote), Hibrit veya Ofis çalışmaya açığım.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div style="border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; background: var(--card-bg); transition: transform 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.borderColor='var(--text-main)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'">
+                    <h4 style="margin-bottom: 1rem; font-weight: 600; font-size: 1.1rem;" data-i18n="contact_location_title">Konum</h4>
+                    <p style="color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        Mersin, Türkiye
+                    </p>
+                    <p style="color: var(--text-muted); margin: 0.75rem 0 0 0; font-size: 0.9rem;" data-i18n="contact_work_pref">Uzaktan (Remote), Hibrit veya Ofis çalışmaya açığım.</p>
                 </div>
-                <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem;">
-                    <h4 style="margin-bottom: 0.75rem; font-weight: 500;" data-i18n="contact_lang_title">Dil Bilgisi</h4>
-                    <div style="display: flex; justify-content: space-between; color: var(--text-muted); margin-bottom: 0.5rem;">
+                <div style="border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; background: var(--card-bg); transition: transform 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.borderColor='var(--text-main)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'">
+                    <h4 style="margin-bottom: 1rem; font-weight: 600; font-size: 1.1rem;" data-i18n="contact_lang_title">Dil Bilgisi</h4>
+                    <div style="display: flex; justify-content: space-between; color: var(--text-muted); margin-bottom: 0.75rem; align-items: center;">
                         <span data-i18n="lang_tr">Türkçe</span>
-                        <span style="font-family: var(--font-mono); font-size: 0.85rem;" data-i18n="lang_tr_level">Ana Dil</span>
+                        <span style="font-family: var(--font-mono); font-size: 0.85rem; padding: 2px 8px; background: rgba(255,255,255,0.05); border-radius: 4px;" data-i18n="lang_tr_level">Ana Dil</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
+                    <div style="display: flex; justify-content: space-between; color: var(--text-muted); align-items: center;">
                         <span data-i18n="lang_en">İngilizce</span>
-                        <span style="font-family: var(--font-mono); font-size: 0.85rem;" data-i18n="lang_en_level">C1 — İleri Düzey</span>
+                        <span style="font-family: var(--font-mono); font-size: 0.85rem; padding: 2px 8px; background: rgba(255,255,255,0.05); border-radius: 4px;" data-i18n="lang_en_level">C1 - İleri Düzey</span>
                     </div>
                 </div>
             </div>
 
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="mailto:mmkutlukaya@gmail.com" class="btn btn-outline">mmkutlukaya@gmail.com</a>
-                <a href="https://linkedin.com/in/mehmet-mert-kutlukaya" target="_blank" class="btn btn-outline">LinkedIn</a>
-                <a href="https://github.com/HolyRock-yottabyte" target="_blank" class="btn btn-outline">GitHub</a>
+                <a href="mailto:mmkutlukaya@gmail.com" class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem;" onmouseover="this.style.color='#ea4335'; this.style.borderColor='#ea4335'" onmouseout="this.style.color=''; this.style.borderColor=''">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span>mmkutlukaya@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/mehmet-mert-kutlukaya" target="_blank" class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem;" onmouseover="this.style.color='#0a66c2'; this.style.borderColor='#0a66c2'" onmouseout="this.style.color=''; this.style.borderColor=''">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/HolyRock-yottabyte" target="_blank" class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem;" onmouseover="this.style.color='var(--text-main)'; this.style.borderColor='var(--text-main)'" onmouseout="this.style.color=''; this.style.borderColor=''">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    <span>GitHub</span>
+                </a>
             </div>
         </section>
     </div>
