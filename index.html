@@ -475,6 +475,41 @@
                 gap: 2.5rem;
             }
         }
+        
+        .tech-stack-container {
+            margin-bottom: 4rem;
+        }
+        .tech-category {
+            margin-bottom: 1.5rem;
+        }
+        .tech-category h4 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tech-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            transition: all 0.2s ease;
+        }
+        .tech-tag:hover {
+            color: var(--text-main);
+            border-color: var(--text-muted);
+            background: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
         .heatmap-container img {
             max-width: 100%;
             /* Invert to dark mode, adjust hue to make it blueish/grayish instead of green */
@@ -977,62 +1012,50 @@
                     </div>
                 </div>
                 
-                <div class="skills-container">
-                    <h3 style="margin-bottom: 1.5rem;" data-i18n="skills_title">Yetenekler</h3>
+                <div class="tech-stack-container">
+                    <h3 style="margin-bottom: 1.5rem;" data-i18n="tech_stack_title">Teknoloji Yığını (Tech Stack)</h3>
                     
-                                        <div class="skill-item">
-                        <div class="skill-info">
-                            <span data-i18n="skill_cyber">Siber Güvenlik</span>
-                            <span>85%</span>
+                    <div class="tech-category">
+                        <h4 data-i18n="tech_cat_1">Gömülü Sistemler & Donanım</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">STM32</span>
+                            <span class="tech-tag">Raspberry Pi</span>
+                            <span class="tech-tag">Pixhawk / ArduPilot</span>
+                            <span class="tech-tag">CAN Bus / Serial</span>
+                            <span class="tech-tag">PID Kontrol</span>
+                            <span class="tech-tag">Sensör Füzyonu</span>
                         </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span data-i18n="skill_1">Gömülü Sistemler / Donanım</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
                     </div>
                     
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Python / AI-ML</span>
-                            <span>90%</span>
+                    <div class="tech-category">
+                        <h4 data-i18n="tech_cat_2">Yapay Zeka & Bilgisayarlı Görü</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">YOLOv11</span>
+                            <span class="tech-tag">TensorFlow / Keras</span>
+                            <span class="tech-tag">MATLAB</span>
                         </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
                     </div>
                     
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>C/C++</span>
-                            <span>90%</span>
+                    <div class="tech-category">
+                        <h4 data-i18n="tech_cat_3">Yazılım (Web & Mobil)</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python (FastAPI)</span>
+                            <span class="tech-tag">C / C++ / C#</span>
+                            <span class="tech-tag">Flutter / Dart (Bloc)</span>
+                            <span class="tech-tag">JavaScript / HTML / CSS</span>
+                            <span class="tech-tag">Unity</span>
                         </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
                     </div>
                     
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span data-i18n="skill_4">Web Geliştirme</span>
-                            <span>80%</span>
+                    <div class="tech-category">
+                        <h4 data-i18n="tech_cat_4">DevOps & Araçlar</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Git / GitHub</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Linux / Kali</span>
+                            <span class="tech-tag">Ağ Güvenliği</span>
                         </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span data-i18n="skill_5">Mobil Geliştirme</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>DevOps / Tools</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
                     </div>
                 </div>
             </div>
