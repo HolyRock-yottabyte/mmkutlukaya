@@ -463,6 +463,18 @@
             background: var(--card-bg);
         }
         
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
         .heatmap-container img {
             max-width: 100%;
             /* Invert to dark mode, adjust hue to make it blueish/grayish instead of green */
@@ -609,6 +621,16 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .timeline {
+                padding-left: 1.25rem;
+                margin-left: 0.5rem;
+            }
+            .timeline-item::before {
+                left: -26px;
+            }
             body {
                 padding-bottom: 65px;
             }
@@ -659,7 +681,7 @@
     
         .awards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 1.5rem;
         }
         .award-card {
@@ -944,7 +966,7 @@
 
         <section id="about" class="reveal">
             <h2 data-i18n="nav_about">Hakkımda</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+            <div class="about-grid">
                 <div>
                                         <p style="color: var(--text-muted); margin-bottom: 1rem;" data-i18n="about_p1">Merhaba, ben Mehmet Mert Kutlukaya. Mersin Üniversitesi Bilişim Sistemleri ve Teknolojileri (CTIS) 4. sınıf öğrencisiyim. Tutkum, yazılımı donanımla buluşturan otonom sistemler ve gömülü mühendislik projeleri geliştirmektir.</p>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;" data-i18n="about_p2">Özellikle Otonom İHA (İnsansız Hava Aracı) yazılımları, uçuş kontrol kartı konfigürasyonları (Pixhawk), sensör füzyonu, PID kontrolü ve gömülü bilgisayarlı görü (OpenCV/Raspberry Pi) konularında derin teknik tecrübeye sahibim. Çalışmalarımla TEKNOFEST Uluslararası İHA yarışmasında finalist oldum.</p>
