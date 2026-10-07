@@ -1722,7 +1722,7 @@
             guest@mert: ~
         </div>
         <div class="term-body" id="term-body">
-            <div class="term-line" data-i18n="term_welcome">Mert OS v1.0. 'help' yazarak komutları görebilirsiniz.</div>
+            <div class="term-line" data-i18n="term_welcome">Mert OS v2.0. 'help' yazarak komutları görebilirsiniz. (İpucu: 'doom' 😈)</div>
             <div class="term-input-line">
                 <span class="term-prompt">guest@mert:~$</span>
                 <input type="text" id="term-input" autocomplete="off" spellcheck="false">
@@ -2172,7 +2172,7 @@
                 contact_title: "İletişim",
                 contact_desc: "Projeleriniz veya işbirliği için benimle iletişime geçebilirsiniz.",
                 footer_text: "© 2026 Mert Kutlukaya. Tüm hakları saklıdır.",
-                term_welcome: "Mert OS v1.0. 'help' yazarak komutları görebilirsiniz."
+                term_welcome: "Mert OS v2.0. 'help' yazarak komutları görebilirsiniz. (İpucu: 'doom' 😈)"
             },
             en: {
                 nav_about: "About",
@@ -2253,7 +2253,7 @@
                 contact_title: "Contact",
                 contact_desc: "Feel free to reach out for projects or collaborations.",
                 footer_text: "© 2026 Mert Kutlukaya. All rights reserved.",
-                term_welcome: "Mert OS v1.0. Type 'help' to see available commands."
+                term_welcome: "Mert OS v2.0. Type 'help' to see available commands. (Hint: 'doom' 😈)"
             }
         };
 
@@ -2543,7 +2543,7 @@
 '</pre>');
                     return;
                 case 'help':
-                    res = isTR ? "Komutlar: help, whoami, skills, projects, clear, profile, matrix\nOyunlar: doom, hack <hedef>, drone start, slot, guess <1-100>" : "Commands: help, whoami, skills, projects, clear, profile, matrix\nGames: doom, hack <target>, drone start, slot, guess <1-100>";
+                    res = isTR ? "Komutlar: help, whoami, skills, projects, clear, profile, matrix\nOyunlar: <span style="color:#ff003c; font-weight:bold; text-shadow:0 0 5px red;">doom</span>, hack <hedef>, drone start, slot, guess <1-100>" : "Commands: help, whoami, skills, projects, clear, profile, matrix\nGames: <span style="color:#ff003c; font-weight:bold; text-shadow:0 0 5px red;">doom</span>, hack <target>, drone start, slot, guess <1-100>";
                     break;
                     res = isTR ? 
                         "Komutlar: help, whoami, skills, projects, clear" : 
