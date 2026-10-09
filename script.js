@@ -838,16 +838,18 @@
             }
         }
 
+
 // --- 8. ANALYTICS TRACKING ---
 console.log('[Analytics] Site ziyareti kaydedildi (Sayfa yüklendi).');
 document.querySelectorAll('a, .btn, button').forEach(el => {
     el.addEventListener('click', (e) => {
-        let name = el.innerText.trim();
+        let name = el.innerText ? el.innerText.trim() : '';
         if(!name && el.getAttribute('aria-label')) name = el.getAttribute('aria-label');
         if(!name && el.id) name = el.id;
         if(name) {
-            console.log('[Analytics] Etkileşim kaydedildi: Tıklandı ->', name.replace(/
-/g, ' '));
+            // Replaced newlines safely without breaking JS syntax
+            let safeName = name.split('\n').join(' ');
+            console.log('[Analytics] Etkileşim kaydedildi: Tıklandı ->', safeName);
         }
     });
 });
