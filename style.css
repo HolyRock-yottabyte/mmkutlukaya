@@ -1162,3 +1162,69 @@
             .hero h1 { font-size: 2.2rem !important; }
             .hero-graphic { transform: scale(0.9); }
         }
+
+/* --- PRINT STYLESHEET (A4 CV OPTIMIZATION) --- */
+@media print {
+    body, html, [data-theme="dark"], [data-theme="light"] {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    
+    nav, #terminal, #term-btn, #themeBtn, #langBtn, .marquee-wrapper, 
+    .hero::before, .hero-bg, canvas, .custom-cursor-dot, .custom-cursor-outline,
+    .social-links, footer, .mockup-header, .cert-icon, .btn {
+        display: none !important;
+    }
+
+    * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+        text-shadow: none !important;
+        border-color: #dddddd !important;
+    }
+
+    h1, h2, h3, h4, h5, p, span, a, .timeline-title, .timeline-company, .timeline-date,
+    .project-title, .tech-tag, .stat-num, .stat-label {
+        color: #000000 !important;
+    }
+
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 1cm !important;
+    }
+    
+    .hero, .section {
+        padding: 1cm 0 !important;
+        min-height: auto !important;
+        page-break-inside: avoid;
+    }
+
+    .about-grid, .projects-grid, .tech-stack-container {
+        display: block !important;
+    }
+    
+    .project-card, .tech-category {
+        page-break-inside: avoid;
+        margin-bottom: 1cm !important;
+        border: 1px solid #ccc !important;
+        background: transparent !important;
+    }
+
+    .timeline {
+        border-left: 2px solid #000 !important;
+    }
+    .timeline-item::before {
+        background: #000 !important;
+        border-color: #000 !important;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+        color: #555 !important;
+    }
+}
