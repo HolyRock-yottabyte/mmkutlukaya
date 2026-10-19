@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mmkutlukaya-v2';
+const CACHE_NAME = 'mmkutlukaya-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -7,12 +7,23 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('[ServiceWorker] Caching app shell');
         return cache.addAll(urlsToCache);
       })
+  );
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.filter(name => name !== CACHE_NAME).map(name => caches.delete(name))
+      );
+    }).then(() => self.clients.claim())
   );
 });
 

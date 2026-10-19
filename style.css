@@ -1090,41 +1090,7 @@
         }
 
 
-        /* Custom Cursor CSS */
-        body, a, button, input, textarea, .btn, .project-card, .tech-category {
-            cursor: none !important;
-        }
-        .custom-cursor-dot {
-            width: 8px; height: 8px;
-            background-color: var(--text-main);
-            position: fixed; top: 0; left: 0;
-            border-radius: 50%;
-            z-index: 9999999;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-        }
-        .custom-cursor-outline {
-            width: 32px; height: 32px;
-            border: 1px solid var(--text-main);
-            position: fixed; top: 0; left: 0;
-            border-radius: 50%;
-            z-index: 9999998;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
-        }
-        .custom-cursor-hover {
-            width: 60px; height: 60px;
-            background-color: rgba(37, 99, 235, 0.1);
-            border-color: rgba(37, 99, 235, 0.5);
-        }
-        [data-theme="light"] .custom-cursor-hover {
-            background-color: rgba(37, 99, 235, 0.2);
-        }
-        @media (max-width: 768px) {
-            body, a, button, input, textarea, .btn, .project-card, .tech-category { cursor: auto !important; }
-            .custom-cursor-dot, .custom-cursor-outline { display: none !important; }
-        }
+        
 
         /* Marquee CSS */
         .marquee-wrapper {
@@ -1171,7 +1137,7 @@
     }
     
     nav, #terminal, #term-btn, #themeBtn, #langBtn, .marquee-wrapper, 
-    .hero::before, .hero-bg, canvas, .custom-cursor-dot, .custom-cursor-outline,
+    .hero::before, .hero-bg, canvas,
     .social-links, footer, .mockup-header, .cert-icon, .btn {
         display: none !important;
     }

@@ -116,26 +116,7 @@
         
         
         
-        // --- 7. CUSTOM CURSOR & UI SOUNDS ---
-        const cursorDot = document.getElementById("cursor-dot");
-        const cursorOutline = document.getElementById("cursor-outline");
-
-        if(window.innerWidth > 768 && cursorDot && cursorOutline) {
-            window.addEventListener("mousemove", function (e) {
-                const posX = e.clientX;
-                const posY = e.clientY;
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-                cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 300, fill: "forwards" });
-            });
-
-            const interactables = document.querySelectorAll('a, button, .btn, .project-card, .tech-category, input, textarea');
-            interactables.forEach(el => {
-                el.addEventListener('mouseenter', () => cursorOutline.classList.add('custom-cursor-hover'));
-                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('custom-cursor-hover'));
-            });
-        }
-
+        // --- 7. UI SOUNDS ---
         // Web Audio API Synth for Premium UI Sounds
         let audioCtx;
         function initAudio() {
