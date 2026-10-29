@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mmkutlukaya-v3';
+const CACHE_NAME = 'mmkutlukaya-v4';
 const urlsToCache = [
   '/',
   '/index.html',
