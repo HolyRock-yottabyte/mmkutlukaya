@@ -785,7 +785,7 @@
     
         .awards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
             gap: 1.5rem;
         }
         .award-card {
@@ -1129,6 +1129,130 @@
             .hero-graphic { transform: scale(0.9); }
         }
 
+
+        /* --- NEWS & PRESS SECTION --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .news-card {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, #2563eb, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--text-muted);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card:hover::before {
+            opacity: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .news-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            background: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            font-weight: 500;
+        }
+
+        [data-theme="light"] .news-badge {
+            background: rgba(37, 99, 235, 0.1);
+            color: #1d4ed8;
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .news-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            color: var(--text-main);
+        }
+
+        .news-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            font-family: var(--font-mono);
+            transition: gap 0.2s ease, color 0.2s ease;
+            align-self: flex-start;
+        }
+
+        .news-link svg {
+            transition: transform 0.2s ease;
+        }
+
+        .news-link:hover {
+            color: #60a5fa;
+            gap: 0.7rem;
+        }
+
+        .news-link:hover svg {
+            transform: translate(2px, -2px);
+        }
+
 /* --- PRINT STYLESHEET (A4 CV OPTIMIZATION) --- */
 @media print {
     body, html, [data-theme="dark"], [data-theme="light"] {
@@ -1173,7 +1297,7 @@
         display: block !important;
     }
     
-    .project-card, .tech-category {
+    .project-card, .tech-category, .news-card {
         page-break-inside: avoid;
         margin-bottom: 1cm !important;
         border: 1px solid #ccc !important;

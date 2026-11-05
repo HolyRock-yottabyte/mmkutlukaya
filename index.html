@@ -78,6 +78,7 @@
                     <a href="#experience" data-i18n="nav_experience">Deneyim</a>
                     <a href="#education" data-i18n="nav_education">Eğitim</a>
                     <a href="#projects" data-i18n="nav_projects">Projeler</a>
+                    <a href="#news" data-i18n="nav_news">Haberler</a>
                     <a href="#contact" data-i18n="nav_contact">İletişim</a>
                 </div>
                 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">
@@ -156,7 +157,7 @@
                     <div class="stat-label" data-i18n="stat_proj">Proje</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">3+</div>
+                    <div class="stat-num">4+</div>
                     <div class="stat-label" data-i18n="stat_awards">Ödül</div>
                 </div>
                 <div class="stat-item">
@@ -382,6 +383,13 @@
                         <span class="award-year">2026</span>
                     </div>
                 </div>
+                <div class="award-card">
+                    <div class="award-icon" style="color: var(--text-muted);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
+                    <div class="award-content">
+                        <h4 data-i18n="award4">Mersin Üniversitesi Teşekkür Belgesi</h4>
+                        <span class="award-year">2026</span>
+                    </div>
+                </div>
             </div> <!-- CLOSE awards-grid -->
             
             <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;" data-i18n="certs_title">Sertifikalar</h3>
@@ -515,7 +523,54 @@
             </div>
         </section>
 
-                <section id="contact" class="reveal" style="padding-bottom: 6rem;">
+                
+        <section id="news" class="reveal">
+            <h2 data-i18n="news_title">Haberler & Basın</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px;" data-i18n="news_desc">
+                Ulusal yarışmalar, yerel ve akademik basında yer alan haberler ve duyurular.
+            </p>
+
+            <div class="news-grid">
+                <!-- Haber 1: Mersin Üniversitesi Resmi Bülteni -->
+                <div class="news-card">
+                    <div>
+                        <div class="news-meta">
+                            <span class="news-badge" data-i18n="news1_badge">Mersin Üniversitesi · Resmi Basın</span>
+                            <span class="news-date">14 Temmuz 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news1_title">Öğrencimizden Siber Güvenlikte Türkiye Üçüncülüğü</h3>
+                        <p class="news-excerpt" data-i18n="news1_desc">
+                            Sanayi ve Teknoloji Bakanlığı ile Savunma Sanayii Başkanlığı iş birliğinde yürütülen Türkiye Siber Vatan Programı Final CTF Yarışması'nda Alesta Takımı ile Türkiye 3.lüğü elde edildi. Yüksekokul Müdürü ve Rektör Danışmanı Doç. Dr. Buğra Sarı tarafından teşekkür belgesi takdim edildi.
+                        </p>
+                    </div>
+                    <a href="https://mersin.edu.tr/tr/akademik/erdemli-uygulamali-teknoloji-ve-isletmecilik-yuksekokulu/haberler/ogrencimizden-siber-guvenlikte-turkiye-ucunculugu-n-400726/" target="_blank" rel="noopener noreferrer" class="news-link">
+                        <span data-i18n="news_btn_read">Haberi İncele</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+
+                <!-- Haber 2: Erdemli Ajans Yerel Medya -->
+                <div class="news-card">
+                    <div>
+                        <div class="news-meta">
+                            <span class="news-badge" data-i18n="news2_badge">Erdemli Ajans · Yerel Medya</span>
+                            <span class="news-date">Temmuz 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news2_title">Tebrikler Erdemli UTİYO Öğrencisi Mehmet Mert Kutlukaya</h3>
+                        <p class="news-excerpt" data-i18n="news2_desc">
+                            Siber Vatan Programı kapsamında Alesta Takımı ile elde edilen siber güvenlik Türkiye derecesi, yerel basında geniş yankı buldu. Erdemli Ajans tarafından öğrencinin ve üniversite yönetiminin başarısı tebrik edildi.
+                        </p>
+                    </div>
+                    <a href="https://www.erdemliajans.com.tr/haber-tebrikler-erdemli-utiyo-ogrencisi-mehmet-mert-kutlukaya-7179.html" target="_blank" rel="noopener noreferrer" class="news-link">
+                        <span data-i18n="news_btn_read">Haberi İncele</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="reveal" style="padding-bottom: 6rem;">
             <h2 data-i18n="contact_title">İletişim</h2>
             <p style="color: var(--text-muted); margin-bottom: 3rem; max-width: 600px;" data-i18n="contact_desc">Projeleriniz veya işbirliği için benimle iletişime geçebilirsiniz.</p>
 

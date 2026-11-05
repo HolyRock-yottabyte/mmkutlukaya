@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mmkutlukaya-v4';
+const CACHE_NAME = 'mmkutlukaya-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -27,15 +27,21 @@ self.addEventListener('activate', event => {
   );
 });
 
+// Network First strategy (Always get latest files if online, fallback to cache offline)
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
+    fetch(event.request)
+      .then(networkResponse => {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
         }
-        return fetch(event.request);
+        return networkResponse;
+      })
+      .catch(() => {
+        return caches.match(event.request);
       })
   );
 });
